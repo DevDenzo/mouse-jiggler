@@ -1,4 +1,4 @@
-from scripts.mouse_jiggler import MouseJiggler
+from scripts.mouse_jiggler_runner import MouseJigglerRunner
 
 __author__ = "Deniz Yukselir"
 __version__ = "0.0.1"
@@ -12,7 +12,7 @@ __license__ = "Devite"
 # mouse = MouseController()
 
 def main():
-    mousejiggler = MouseJiggler
+    mousejiggler = MouseJigglerRunner
     mousejiggler.run()
 
 if __name__ == "__main__":

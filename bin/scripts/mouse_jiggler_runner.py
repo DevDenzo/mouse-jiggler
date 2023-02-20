@@ -1,7 +1,7 @@
 import keyboard
 from scripts.enums.jiggler_mode import JigglerMode
 
-class MouseJiggler:
+class MouseJigglerRunner:
     def __init__(self, mode, status):
         self.mode = mode
         self.status = status
