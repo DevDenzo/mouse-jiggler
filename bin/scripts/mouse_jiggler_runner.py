@@ -6,9 +6,9 @@ from scripts.modes import natural_mode, pattern_mode, random_mode
 class MouseJigglerRunner():
     def __init__(self):
         self.status = JigglerStatus.SELECTING_MODE
-        self.start_application = self.start()
+        self.start_application = self.run()
 
-    def start(self):
+    def run(self):
 
         while self.status == JigglerStatus.SELECTING_MODE:
 
