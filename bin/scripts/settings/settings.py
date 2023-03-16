@@ -14,8 +14,8 @@ class MouseJigglerSettings():
     def getScreenSize(self):
         self.screen_size_list = []
         for monitor in get_monitors():
-            monitor_height = monitor.height
-            monitor_width = monitor.width
+            monitor_height = monitor.width
+            monitor_width = monitor.height
             self.screen_size_list.append([monitor_height, monitor_width])
 
         return self.screen_size_list
