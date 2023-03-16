@@ -6,10 +6,21 @@ class CoordinateGenerator():
 
         generated_data = []
 
+        maximum_horizontal = 0
+        minimum_vertical = screensize[0][1]
+
+        for screen in screensize:
+            #Add the horizontal coordinates for all screens
+            maximum_horizontal = screen[0] + maximum_horizontal
+
+            #Find the smallest screens vertical
+            if screen[1] < minimum_vertical:
+                minimum_vertical = screen[1]
+
         for n in range(0, quantity):
             for screen in screensize:
                 
-                generated_data.append((randrange(0,screen[0]),randrange(0,screen[1])))
+                generated_data.append((randrange(0, maximum_horizontal),randrange(0, minimum_vertical)))
 
         return generated_data
     
