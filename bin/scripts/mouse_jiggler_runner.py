@@ -5,7 +5,8 @@ from scripts.enums.jiggler_mode import JigglerMode
 from scripts.enums.jiggler_status import JigglerStatus
 
 class MouseJigglerRunner():
-    def __init__(self, settings):
+    def __init__(self, menu, settings):
+        self.menu = menu
         self.settings = settings
         self.status = JigglerStatus.SELECTING_MODE
         self.start_application = self.run()
@@ -13,6 +14,14 @@ class MouseJigglerRunner():
         self.mode_thread = ""
 
     def run(self):
+        while self.status != JigglerStatus.STOPPED:
+            self.application_start()
+
+        print("Shutting Down...")
+
+    def application_start(self):
+
+        print(self.menu.select_mode_menu())
 
         while self.status == JigglerStatus.SELECTING_MODE:
 
@@ -37,9 +46,15 @@ class MouseJigglerRunner():
 
         while self.status == JigglerStatus.RUNNING:
             print("Began " + self.mode + " mode")
+            print("\n")
+            print("Hold S to stop and return to menu\n")
+            print("Hold Q to stop and quit the application\n")
 
+            if keyboard.read_key() == "s" or keyboard.read_key() == "S":
+                self.mode_thread.status = JigglerStatus.SELECTING_MODE
+                self.status = JigglerStatus.SELECTING_MODE
+            
             if keyboard.read_key() == "q" or keyboard.read_key() == "Q":
                 self.mode_thread.status = JigglerStatus.STOPPED
                 self.status = JigglerStatus.STOPPED
-        
-        print("Quit Application")
+
