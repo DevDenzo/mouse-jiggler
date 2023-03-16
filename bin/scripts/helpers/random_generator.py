@@ -1,15 +1,15 @@
+from random import randrange
+
 class RandomGenerator():
 
-    def init(self, data_type, data):
-        self.data_type = data_type
-        self.data = data
+    def generate_coordinates_by_screensize(self, screensize, quantity):
 
-    def generate_coordinates(self):
-        if self.data_type == "LIST":
+        generated_data = []
 
-            for item in self.data:
+        for n in range(0, quantity):
+            for screen in screensize:
+                
+                generated_data.append((randrange(0,screen[0]),randrange(0,screen[1])))
 
-                if len(item) == 2:
-
-
+        return generated_data
 
