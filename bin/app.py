@@ -1,3 +1,4 @@
+from scripts.mouse_jiggler_menu import MouseJigglerMenu
 from scripts.mouse_jiggler_runner import MouseJigglerRunner
 from scripts.settings.settings import MouseJigglerSettings
 
@@ -7,7 +8,8 @@ __license__ = "Devite"
 
 def main():
     mouseSettings = MouseJigglerSettings()
-    mousejiggler = MouseJigglerRunner(mouseSettings)
+    mouseMenu = MouseJigglerMenu()
+    mousejiggler = MouseJigglerRunner(mouseMenu, mouseSettings)
 
 if __name__ == "__main__":
     main()
