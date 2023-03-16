@@ -1,4 +1,5 @@
 import keyboard
+from scripts.modes.pattern_mode import PatternMode
 from scripts.modes.random_mode import RandomMode
 from scripts.enums.jiggler_mode import JigglerMode
 from scripts.enums.jiggler_status import JigglerStatus
@@ -29,11 +30,14 @@ class MouseJigglerRunner():
 
             #Start Pattern Mode
             elif keyboard.read_key() == JigglerMode.PATTERN.value:
-                print("Pattern")
+                self.mode = "Pattern"
+                self.mode_thread = PatternMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 10, JigglerStatus.RUNNING)
+                self.mode_thread.start()
                 self.status = JigglerStatus.RUNNING
 
         while self.status == JigglerStatus.RUNNING:
             print("Began " + self.mode + " mode")
+
             if keyboard.read_key() == "q" or keyboard.read_key() == "Q":
                 self.mode_thread.status = JigglerStatus.STOPPED
                 self.status = JigglerStatus.STOPPED
