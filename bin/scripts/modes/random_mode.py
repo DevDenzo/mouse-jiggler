@@ -2,7 +2,7 @@ from threading import Thread
 from pynput.mouse import Button, Controller
 import time
 from scripts.enums.jiggler_status import JigglerStatus
-from scripts.helpers.random_generator import RandomGenerator
+from scripts.helpers.coordinate_generator import CoordinateGenerator
 
 class RandomMode(Thread):
 
@@ -12,11 +12,10 @@ class RandomMode(Thread):
         self.os = os
         self.move_delay = move_delay
         self.status = status
-
         self.mouse = Controller()
 
     def run(self):
-        random_coordinates = RandomGenerator().generate_coordinates_by_screensize(self.screen_size_list, 10000)
+        random_coordinates = CoordinateGenerator().generate_random_coordinates_by_screensize(self.screen_size_list, 10000)
 
         while self.status == JigglerStatus.RUNNING:
             for cordinate in random_coordinates:
