@@ -26,6 +26,9 @@ class PatternMode(Thread):
                     # If delay provided, check 4 times per second if status is still RUNNING or not
                     for n in range(0, self.move_delay*4):
                         if self.status == JigglerStatus.RUNNING:
-                            time.sleep(1)
+                            time.sleep(0.25)
                         else:
                             break
+            
+                if self.status != JigglerStatus.RUNNING:
+                    break

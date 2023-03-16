@@ -29,3 +29,6 @@ class RandomMode(Thread):
                             time.sleep(0.25)
                         else:
                             break
+
+                if self.status != JigglerStatus.RUNNING:
+                    break
