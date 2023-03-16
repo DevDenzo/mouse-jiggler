@@ -14,7 +14,7 @@ __license__ = "Devite"
 
 def main():
     mouseSettings = MouseJigglerSettings()
-    mousejiggler = MouseJigglerRunner()
+    mousejiggler = MouseJigglerRunner(mouseSettings)
 
 if __name__ == "__main__":
     main()
