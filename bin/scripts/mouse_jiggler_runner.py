@@ -8,6 +8,8 @@ class MouseJigglerRunner():
         self.settings = settings
         self.status = JigglerStatus.SELECTING_MODE
         self.start_application = self.run()
+        self.mode = ""
+        self.mode_thread = ""
 
     def run(self):
 
@@ -15,9 +17,9 @@ class MouseJigglerRunner():
 
             #Start Random Mode
             if keyboard.read_key() == JigglerMode.RANDOM.value:
-                print("Random")
-                random_mode = RandomMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), False, JigglerMode.RANDOM)
-                random_mode.run()
+                self.mode = "Random"
+                self.mode_thread = RandomMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 10, JigglerStatus.RUNNING)
+                self.mode_thread.start()
                 self.status = JigglerStatus.RUNNING
 
             #Start Natural Mode
@@ -31,8 +33,9 @@ class MouseJigglerRunner():
                 self.status = JigglerStatus.RUNNING
 
         while self.status == JigglerStatus.RUNNING:
-            print("Entered Running Phase")
+            print("Began " + self.mode + " mode")
             if keyboard.read_key() == "q" or keyboard.read_key() == "Q":
+                self.mode_thread.status = JigglerStatus.STOPPED
                 self.status = JigglerStatus.STOPPED
         
         print("Quit Application")
