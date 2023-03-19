@@ -31,7 +31,7 @@ class CoordinateGenerator():
         for n in range(0, quantity):
             for screen in screensize:
                 
-                generated_data.append((randrange(0, maximum_horizontal),randrange(0, minimum_vertical)))
+                generated_data.append((randrange(0, maximum_horizontal), randrange(0, minimum_vertical)))
 
         return generated_data
     
