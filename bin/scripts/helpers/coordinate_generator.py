@@ -2,31 +2,7 @@ from random import randrange
 
 class CoordinateGenerator():
 
-    def generate_random_coordinates_by_screensize(self, screensize, quantity):
-
-        generated_data = []
-
-        maximum_horizontal = 0
-        minimum_vertical = screensize[0][1]
-
-        for screen in screensize:
-            #Add the horizontal coordinates for all screens
-            maximum_horizontal = screen[0] + maximum_horizontal
-
-            #Find the smallest screens vertical
-            if screen[1] < minimum_vertical:
-                minimum_vertical = screen[1]
-
-        for n in range(0, quantity):
-            for screen in screensize:
-                
-                generated_data.append((randrange(0, maximum_horizontal),randrange(0, minimum_vertical)))
-
-        return generated_data
-    
-    def generate_zig_zag_coordinates_by_screensize(self, screensize, quantity):
-
-        generated_data = []
+    def find_maximum_horizontal_and_minimum_vertical(self, screensize):
 
         #Figure out the maximum horizontal as horizontal coordinates will add
         #Figure out the smallest screen vertical so we remain within that limit for all movement
@@ -40,6 +16,33 @@ class CoordinateGenerator():
             #Find the smallest screens vertical
             if screen[1] < minimum_vertical:
                 minimum_vertical = screen[1]
+
+        return (maximum_horizontal, minimum_vertical)
+
+
+    def generate_random_coordinates_by_screensize(self, screensize, quantity):
+
+        generated_data = []
+        
+        coordinates = self.find_maximum_horizontal_and_minimum_vertical(screensize)
+        maximum_horizontal = coordinates[0]
+        minimum_vertical = coordinates[1]
+
+        for n in range(0, quantity):
+            for screen in screensize:
+                
+                generated_data.append((randrange(0, maximum_horizontal),randrange(0, minimum_vertical)))
+
+        return generated_data
+    
+    def generate_zig_zag_coordinates_by_screensize(self, screensize, quantity):
+
+        generated_data = []
+
+
+        coordinates = self.find_maximum_horizontal_and_minimum_vertical(screensize)
+        maximum_horizontal = coordinates[0]
+        minimum_vertical = coordinates[1]
 
         start_coordinate = (maximum_horizontal / 20, minimum_vertical / 8)
         first_peak_coordinate = ((maximum_horizontal / 20) * 3.25, (minimum_vertical / 8) * 7)
