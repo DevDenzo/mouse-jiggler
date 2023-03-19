@@ -82,3 +82,9 @@ class CoordinateGenerator():
         generated_data = first_spike + second_spike + third_spike + fourth_spike
         
         return generated_data
+
+def generate_coordinates_on_line(self, coordinate_start, coordinate_end, number_of_points):
+    generated_data = []
+
+    #Using Y=MX+C find the gradient of the line, divide it by number of points. Keep adding the dy/dx and append each coordinate.
+    return generated_data
