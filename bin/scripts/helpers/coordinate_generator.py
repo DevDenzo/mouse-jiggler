@@ -83,8 +83,25 @@ class CoordinateGenerator():
         
         return generated_data
 
-def generate_coordinates_on_line(self, coordinate_start, coordinate_end, number_of_points):
-    generated_data = []
+    def generate_coordinates_on_line(self, coordinate_start, coordinate_end, number_of_coordinates):
+        generated_data = []
 
-    #Using Y=MX+C find the gradient of the line, divide it by number of points. Keep adding the dy/dx and append each coordinate.
-    return generated_data
+        #Get a list of all the x coordinates
+        x_coordinates = []
+        for n in range(0, number_of_coordinates):
+            x_range = coordinate_end[0] - coordinate_start[0]
+            x_coordinate = coordinate_start[0] + (x_range/number_of_coordinates)*n
+            x_coordinates.append(x_coordinate)
+
+        #Find the gradient(m) and y-intercept(c) (y=mx+c)
+        delta_y = coordinate_end[1] - coordinate_start[1]
+        delta_x = coordinate_end[0] - coordinate_start[0]
+        gradient = delta_y / delta_x
+        c =  coordinate_start[1] - (coordinate_start[0] * gradient)
+
+        #Plug in all the values found to find the Y values
+        for x_coordinate in x_coordinates:
+            y_coordinate = x_coordinate * gradient + c
+            generated_data.append((x_coordinate, y_coordinate))
+
+        return generated_data
