@@ -28,7 +28,7 @@ class MouseJigglerRunner():
             #Start Random Mode
             if keyboard.read_key() == JigglerMode.RANDOM.value:
                 self.mode = "Random"
-                self.mode_thread = RandomMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 10, JigglerStatus.RUNNING)
+                self.mode_thread = RandomMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), "LINE", 100, JigglerStatus.RUNNING)
                 self.mode_thread.start()
                 self.status = JigglerStatus.RUNNING
 
