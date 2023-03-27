@@ -1,1 +1,1 @@
-from scripts.modes import natural_mode, pattern_mode, random_mode
+from scripts.modes import natural_mode, pattern_mode, random_line_mode, random_point_mode
