@@ -1,6 +1,7 @@
 import keyboard
 from scripts.modes.pattern_mode import PatternMode
-from scripts.modes.random_mode import RandomMode
+from scripts.modes.random_line_mode import RandomLineMode
+from scripts.modes.random_point_mode import RandomPointMode
 from scripts.enums.jiggler_mode import JigglerMode
 from scripts.enums.jiggler_status import JigglerStatus
 
@@ -25,16 +26,18 @@ class MouseJigglerRunner():
 
         while self.status == JigglerStatus.SELECTING_MODE:
 
-            #Start Random Mode
-            if keyboard.read_key() == JigglerMode.RANDOM.value:
-                self.mode = "Random"
-                self.mode_thread = RandomMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), "LINE", 100, JigglerStatus.RUNNING)
+            #Start Random Line Mode
+            if keyboard.read_key() == JigglerMode.RANDOM_LINE.value:
+                self.mode = "Random Line"
+                self.mode_thread = RandomLineMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 100, JigglerStatus.RUNNING)
                 self.mode_thread.start()
                 self.status = JigglerStatus.RUNNING
 
-            #Start Natural Mode
-            elif keyboard.read_key() == JigglerMode.NATURAL.value:
-                print("Natural")
+            #Start Random Point Mode
+            if keyboard.read_key() == JigglerMode.RANDOM_POINT.value:
+                self.mode = "Random Point"
+                self.mode_thread = RandomPointMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 100, JigglerStatus.RUNNING)
+                self.mode_thread.start()
                 self.status = JigglerStatus.RUNNING
 
             #Start Pattern Mode
@@ -42,6 +45,11 @@ class MouseJigglerRunner():
                 self.mode = "Pattern"
                 self.mode_thread = PatternMode(self.settings.getScreenSize(), self.settings.getOperatingSystem(), 10, JigglerStatus.RUNNING)
                 self.mode_thread.start()
+                self.status = JigglerStatus.RUNNING
+
+            #Start Human Mode
+            elif keyboard.read_key() == JigglerMode.HUMAN.value:
+                print("Human")
                 self.status = JigglerStatus.RUNNING
 
         while self.status == JigglerStatus.RUNNING:
