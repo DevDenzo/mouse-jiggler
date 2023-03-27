@@ -23,17 +23,20 @@ class CoordinateGenerator():
     def generate_random_coordinates_by_screensize(self, screensize, quantity):
 
         generated_data = []
-        
+        for n in range(0, quantity):
+            generated_data.append(self.generate_random_coordinate_by_screensize(screensize))
+
+        return generated_data
+    
+    def generate_random_coordinate_by_screensize(self, screensize):
         coordinates = self.find_maximum_horizontal_and_minimum_vertical(screensize)
         maximum_horizontal = coordinates[0]
         minimum_vertical = coordinates[1]
 
-        for n in range(0, quantity):
-            for screen in screensize:
-                
-                generated_data.append((randrange(0, maximum_horizontal), randrange(0, minimum_vertical)))
+        random_point = (randrange(0, maximum_horizontal), randrange(0, minimum_vertical))
 
-        return generated_data
+        return random_point
+
     
     def generate_zig_zag_coordinates_by_screensize(self, screensize, quantity):
 
