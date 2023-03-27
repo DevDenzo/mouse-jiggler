@@ -1,5 +1,7 @@
 import pyfiglet
 
+from scripts.enums.jiggler_mode import JigglerMode
+
 class MouseJigglerMenu():
 
     def __init__(self):
@@ -21,8 +23,19 @@ class MouseJigglerMenu():
                                                                 By Devite"""
 
     def select_mode_menu(self):
-        return f'{self.banner}\n\n Select Mode: \n [1] Press & Hold 1 For Random Mode \n [2] Press & Hold 2 For Natural Mode \n [3] Press & Hold 3 For Pattern Mode \n\n'
+        return f'{self.banner}\n\n{self.generate_list_of_modes()}'
+
+    def generate_list_of_modes(self):
+
+        menu_options = "Select Mode: \n"
+        for mode in JigglerMode:
+            mode_name = mode._name_.replace('_', ' ').title()
+            menu_options = menu_options + f"[{mode.value}] Press & Hold {mode.value} For {mode_name} Mode \n"
+        menu_options = menu_options + "\n"
+
+        return menu_options
+            
 
 
 menu = MouseJigglerMenu()
-menu.select_mode_menu()
+menu.generate_list_of_modes()
