@@ -19,7 +19,6 @@ class CoordinateGenerator():
 
         return (maximum_horizontal, minimum_vertical)
 
-
     def generate_random_coordinates_by_screensize(self, screensize, quantity):
 
         generated_data = []
@@ -36,8 +35,7 @@ class CoordinateGenerator():
         random_point = (randrange(0, maximum_horizontal), randrange(0, minimum_vertical))
 
         return random_point
-
-    
+ 
     def generate_zig_zag_coordinates_by_screensize(self, screensize, quantity):
 
         generated_data = []
@@ -108,3 +106,10 @@ class CoordinateGenerator():
             generated_data.append((x_coordinate, y_coordinate))
 
         return generated_data
+    
+    def generate_random_coordinate_in_zone(self, zone_start, zone_end):
+        change_in_x = zone_end[0] - zone_start[0]
+        change_in_y = zone_end[1] - zone_start[1]
+
+        random_point_in_zone = (randrange(0, change_in_x) + zone_start[0], randrange(0, change_in_y) + zone_start[1])
+        return random_point_in_zone
