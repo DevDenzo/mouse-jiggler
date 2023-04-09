@@ -1,6 +1,8 @@
 # Mouse Jiggler
 This repository holds the code for a mouse jiggler application. This application will automate the movement of your mouse.
 
+If you like the code or would like to reach out to me about potential updates / features you can find me on twitter @DevDenzo
+
 # Modes
 This application has 4 different modes:
 
